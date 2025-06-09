@@ -9,5 +9,6 @@ dependencies = [
     "django-extensions>=4.1",
     "djangorestframework>=3.16.0",
     "pytest>=8.4.0",
+    "pytest-django>=4.11.1",
     "requests>=2.32.3",
 ]
