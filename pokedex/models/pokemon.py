@@ -17,4 +17,5 @@ class Pokemon(models.Model):
         "pokedex.EvolutionTree",
         on_delete=models.RESTRICT,
         related_name="pokemon",
+        null=True,
     )
