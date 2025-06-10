@@ -3,7 +3,7 @@ from ._import_functions import import_pokemon
 
 
 class Command(BaseCommand):
-    help = "Import the first 151 Pokemon (also known as Generation 1 Pokemon) into the database."
+    help = "Import the all Generation 1 Pokemon and their complete evolution trees into the database."
 
     def add_arguments(self, parser):
         parser.add_argument(
