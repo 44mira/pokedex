@@ -16,10 +16,11 @@ def import_types(types):
 
         res = Poketype.objects.filter(name=name).first()
         if res is None:
+            if _verbose:
+                _stdout.write(f"Successfully added type {name.capitalize()}.")
+
             res = Poketype.objects.create(name=name)
 
-        if _verbose:
-            _stdout.write(f"Successfully added type {name.capitalize()}.")
         imported_types.add(res)
 
     return imported_types
@@ -94,10 +95,12 @@ def import_evolution(evolution_chain):
 
     stored_tree = EvolutionTree.objects.filter(root=root).first()
     if stored_tree is None:
+        if _verbose:
+            _stdout.write(
+                f"Successfully added evolution tree for {ancestor.capitalize()}."
+            )
         stored_tree = EvolutionTree.objects.create(root=root)
 
-    if _verbose:
-        _stdout.write(f"Successfully added evolution tree for {ancestor.capitalize()}.")
     return stored_tree
 
 
