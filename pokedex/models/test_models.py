@@ -52,6 +52,11 @@ def setup(db):
     )
     squirtle_etree = EvolutionTree.objects.create(root=squirtle_enode)
 
+    squirtle.evolution_tree = squirtle_etree
+    wartortle.evolution_tree = squirtle_etree
+    squirtle.save()
+    wartortle.save()
+
 
 @pytest.mark.django_db
 def test_poketype(setup):
@@ -120,7 +125,7 @@ def test_pokemon(setup):
 def test_evolution(setup):
     squirtle_enode = EvolutionNode.objects.get(pokemon__name="Squirtle")
     wartortle_enode = EvolutionNode.objects.get(pokemon__name="Wartortle")
-    squirtle_etree = EvolutionTree.objects.get(root=squirtle_enode)
+    squirtle_etree = Pokemon.objects.get(name="Squirtle").evolution_tree
 
     assert squirtle_enode.pokemon.name == "Squirtle"
     assert wartortle_enode.pokemon.name == "Wartortle"
