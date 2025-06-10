@@ -41,7 +41,7 @@ class EvolutionTree(models.Model):
     """
 
     root = models.OneToOneField(
-        "pokedex.EvolNode",
+        "pokedex.EvolutionNode",
         on_delete=models.CASCADE,
         related_name="+",
     )
