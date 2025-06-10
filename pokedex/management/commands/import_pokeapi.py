@@ -19,5 +19,7 @@ class Command(BaseCommand):
             import_pokemon(i, verbose=verbose, stdout=self.stdout)
 
         self.stdout.write(
-            self.style.SUCCESS("Successfully imported the first 151 Pokemon.")
+            self.style.SUCCESS(
+                "Successfully imported all Generation 1 Pokemon and their complete evolution trees."
+            )
         )

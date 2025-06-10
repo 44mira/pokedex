@@ -69,7 +69,9 @@ def import_evolution(evolution_chain):
     """
 
     ancestor = evolution_chain.species.name
-    p_ancestor = Pokemon.objects.get(name=ancestor)
+    p_ancestor = Pokemon.objects.filter(name=ancestor).first()
+    if p_ancestor is None:
+        p_ancestor = import_pokemon(ancestor)
     stored_ancestor = EvolutionNode.objects.filter(pokemon=p_ancestor).first()
 
     stored_tree = EvolutionTree.objects.filter(root=stored_ancestor).first()
