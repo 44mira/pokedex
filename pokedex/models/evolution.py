@@ -61,3 +61,12 @@ class EvolutionTree(models.Model):
 
         _traverse(self.root, 0)
         return results
+
+    def __str__(self) -> str:
+        tree = self.get_tree()
+        output = f"({self.root.pokemon.name})"
+
+        if len(tree) > 1:
+            output += f"({self.root.pokemon.name} -> {tree[-1][0]})"
+
+        return output

@@ -10,3 +10,6 @@ class Sprite(models.Model):
     back_shiny = models.URLField(null=True)
     back_female = models.URLField(null=True)
     back_shiny_female = models.URLField(null=True)
+
+    def __str__(self) -> str:
+        return self.pokemon.name

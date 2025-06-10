@@ -8,3 +8,6 @@ class Move(models.Model):
         on_delete=models.CASCADE,
         related_name="moves",
     )
+
+    def __str__(self) -> str:
+        return self.name
