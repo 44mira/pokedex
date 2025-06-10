@@ -53,7 +53,7 @@ class EvolutionTree(models.Model):
         """
         results = []
 
-        # perform breadth-first search on all the children
+        # perform depth-first search on all the children
         def _traverse(node, depth):
             results.append((node.pokemon, depth))
             for n in node.next_nodes.all():
