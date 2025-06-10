@@ -77,8 +77,8 @@ def test_import_moves():
     move1_type = pokemon.moves[0].move.type.name
 
     assert Move.objects.count() == len(pokemon.moves)
-    assert Move.objects.first().name == pokemon.moves[0].move.name
-    assert Move.objects.first().poketype.name == move1_type
+    assert Move.objects.order_by('id').first().name == pokemon.moves[0].move.name
+    assert Move.objects.order_by('id').first().poketype.name == move1_type
 
 
 @pytest.mark.django_db
