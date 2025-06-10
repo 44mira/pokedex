@@ -19,3 +19,6 @@ class Pokemon(models.Model):
         related_name="pokemon",
         null=True,
     )
+
+    def __str__(self) -> str:
+        return self.name
