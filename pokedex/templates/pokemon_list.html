@@ -3,6 +3,14 @@
 {% block title %}<h1>Pokemon List</h1>{% endblock %}
 
 {% block content %}
+
+<form method="get">
+  <label for="name">Search by name:</label>
+  <input type="text" name="name" id="name"/>
+
+  <input type="submit" value="Search"/>
+</form>
+
 <div class="pokemon-list">
 {% for p in pokemon %}
   <a href={% url "pokemon-detail" p.pk %}>
