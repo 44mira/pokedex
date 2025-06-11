@@ -32,5 +32,5 @@ urlpatterns = [
     path("pokemon/", PokemonCreate.as_view(), name="pokemon-create"),
     path("pokemon/<int:pk>/delete/", PokemonDelete.as_view(), name="pokemon-delete"),
     path("pokemon/<int:pk>/update/", PokemonUpdate.as_view(), name="pokemon-update"),
-    path("api/v1/", include(router.urls)),
+    path("api/v1/", include((router.urls, "api"))),
 ]
