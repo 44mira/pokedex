@@ -26,11 +26,15 @@ router.register(r"sprite", SpriteViewSet)
 router.register(r"evolution-node", EvolutionNodeViewSet)
 router.register(r"evolution-tree", EvolutionTreeViewSet)
 
+pokemon_views = [
+    path("<int:pk>/", PokemonDetail.as_view(), name="pokemon-detail"),
+    path("", PokemonCreate.as_view(), name="pokemon-create"),
+    path("<int:pk>/delete/", PokemonDelete.as_view(), name="pokemon-delete"),
+    path("<int:pk>/update/", PokemonUpdate.as_view(), name="pokemon-update"),
+]
+
 urlpatterns = [
     path("pokemons/", PokemonList.as_view(), name="pokemon-list"),
-    path("pokemon/<int:pk>/", PokemonDetail.as_view(), name="pokemon-detail"),
-    path("pokemon/", PokemonCreate.as_view(), name="pokemon-create"),
-    path("pokemon/<int:pk>/delete/", PokemonDelete.as_view(), name="pokemon-delete"),
-    path("pokemon/<int:pk>/update/", PokemonUpdate.as_view(), name="pokemon-update"),
+    path("pokemon/", include(pokemon_views)),
     path("api/v1/", include((router.urls, "api"))),
 ]
