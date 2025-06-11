@@ -4,7 +4,7 @@
 This project imports Gen 1 and their complete trees (including ones outside of
 Gen 1) with a management command.
 
-> [!NOTE]:
+> [!NOTE]
 > The Pokemon IDs in this site are **NOT** their actual Pokemon IDs, but their
 > IDs in the database.
 
