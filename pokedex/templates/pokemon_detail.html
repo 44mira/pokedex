@@ -27,6 +27,18 @@
       <div>{{ pokemon.height }} decimeters (dm)</div>
       <div>{{ pokemon.weight }} hectograms (hg)</div>
     </section>
+    <section class="edit">
+      <a href={% url "pokemon-update" pokemon.pk %}>
+        <div class="edit__button">
+          UPDATE
+        </div>
+      </a>
+      <a href={% url "pokemon-delete" pokemon.pk %}>
+        <div class="edit__button">
+          DELETE
+        </div>
+      </a>
+    </section>
   </div>
 </div>
 
@@ -73,6 +85,21 @@
 </div>
 
 <style>
+.edit {
+  font-size: 20px;
+  display: flex;
+  gap: 2em;
+}
+  .edit__button {
+    background: #ED392D;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 0.25em 0.5em;
+  }
+  .edit__button:hover {
+    background: #f76a6a;
+  }
+
 .pokemon-entry {
   display: flex;
   gap: 20px;
@@ -163,6 +190,7 @@
     }
 
   .entry-physique {
+    width: 100%;
     color: white;
     font-size: 24px;
   }
