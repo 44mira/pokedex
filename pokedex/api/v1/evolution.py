@@ -3,11 +3,11 @@ from pokedex.models import EvolutionNode, EvolutionTree
 from pokedex.serializers import EvolutionTreeSerializer, EvolutionNodeSerializer
 
 
-class EvolutionNodeViewset(ModelViewSet):
+class EvolutionNodeViewSet(ModelViewSet):
     queryset = EvolutionNode.objects.all()
     serializer_class = EvolutionNodeSerializer
 
 
-class EvolutionTreeViewset(ModelViewSet):
+class EvolutionTreeViewSet(ModelViewSet):
     queryset = EvolutionTree.objects.all()
     serializer_class = EvolutionTreeSerializer

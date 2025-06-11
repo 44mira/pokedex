@@ -3,6 +3,6 @@ from pokedex.models import Poketype
 from pokedex.serializers import PoketypeSerializer
 
 
-class PoketypeViewset(ModelViewSet):
+class PoketypeViewSet(ModelViewSet):
     queryset = Poketype.objects.all()
     serializer_class = PoketypeSerializer

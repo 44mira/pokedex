@@ -3,6 +3,6 @@ from pokedex.models import Sprite
 from pokedex.serializers import SpriteSerializer
 
 
-class SpriteViewset(ModelViewSet):
+class SpriteViewSet(ModelViewSet):
     queryset = Sprite.objects.all()
     serializer_class = SpriteSerializer

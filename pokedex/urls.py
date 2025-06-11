@@ -2,12 +2,12 @@ from django.urls import include, path
 
 from rest_framework import routers
 from pokedex.api.v1 import (
-    PokemonViewset,
-    MoveViewset,
-    PoketypeViewset,
-    SpriteViewset,
-    EvolutionNodeViewset,
-    EvolutionTreeViewset,
+    PokemonViewSet,
+    MoveViewSet,
+    PoketypeViewSet,
+    SpriteViewSet,
+    EvolutionNodeViewSet,
+    EvolutionTreeViewSet,
 )
 
 from pokedex.views import (
@@ -19,12 +19,12 @@ from pokedex.views import (
 )
 
 router = routers.SimpleRouter()
-router.register(r"pokemon", PokemonViewset)
-router.register(r"type", PoketypeViewset)
-router.register(r"move", MoveViewset)
-router.register(r"sprite", SpriteViewset)
-router.register(r"evolution-node", EvolutionNodeViewset)
-router.register(r"evolution-tree", EvolutionTreeViewset)
+router.register(r"pokemon", PokemonViewSet)
+router.register(r"type", PoketypeViewSet)
+router.register(r"move", MoveViewSet)
+router.register(r"sprite", SpriteViewSet)
+router.register(r"evolution-node", EvolutionNodeViewSet)
+router.register(r"evolution-tree", EvolutionTreeViewSet)
 
 urlpatterns = [
     path("pokemons/", PokemonList.as_view(), name="pokemon-list"),

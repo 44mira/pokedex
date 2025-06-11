@@ -3,6 +3,6 @@ from pokedex.models import Move
 from pokedex.serializers import MoveSerializer
 
 
-class MoveViewset(ModelViewSet):
+class MoveViewSet(ModelViewSet):
     queryset = Move.objects.all()
     serializer_class = MoveSerializer
