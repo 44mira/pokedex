@@ -1,1 +1,1 @@
-from .pokemon import PokemonList, PokemonDetail
+from .pokemon import *

@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import CreateView, DeleteView, ListView, DetailView
 from pokedex.models import Pokemon
 
 
@@ -15,3 +15,18 @@ class PokemonDetail(DetailView):
 
     context_object_name = "pokemon"
     template_name = "pokemon_detail.html"
+
+
+class PokemonCreate(CreateView):
+    model = Pokemon
+    fields = "__all__"
+
+    template_name = "pokemon_form.html"
+    success_url = "/pokedex/pokemons/"
+
+
+class PokemonDelete(DeleteView):
+    model = Pokemon
+
+    template_name = "pokemon_delete.html"
+    success_url = "/pokedex/pokemons/"
