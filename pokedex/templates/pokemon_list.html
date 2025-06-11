@@ -8,6 +8,14 @@
   <label for="name">Search by name:</label>
   <input type="text" name="name" id="name"/>
 
+  <select name="type" multiple>
+    {% for type in types %}
+      <option value="{{ type.name }}" {% if type.name in selected_types %}selected{% endif %}>
+        {{ type.name|upper }}
+      </option>
+    {% endfor %}
+  </select>
+
   <input type="submit" value="Search"/>
 </form>
 
