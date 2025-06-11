@@ -18,7 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from pokedex.views import RegisterUser, LoginUser, LogoutUser
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("register/", RegisterUser.as_view()),
+    path("login/", LoginUser.as_view()),
+    path("logout/", LogoutUser.as_view()),
     path("pokedex/", include("pokedex.urls")),
 ]

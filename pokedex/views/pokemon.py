@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.db.models import Q, Count
 from django.views.generic import (
     CreateView,
@@ -48,24 +49,33 @@ class PokemonDetail(DetailView):
     template_name = "pokemon_detail.html"
 
 
-class PokemonCreate(CreateView):
+class PokemonCreate(UserPassesTestMixin, CreateView):
     model = Pokemon
     fields = "__all__"
 
     template_name = "pokemon_form.html"
     success_url = "/pokedex/pokemons/"
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class PokemonDelete(DeleteView):
+
+class PokemonDelete(UserPassesTestMixin, DeleteView):
     model = Pokemon
 
     template_name = "pokemon_delete.html"
     success_url = "/pokedex/pokemons/"
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class PokemonUpdate(UpdateView):
+
+class PokemonUpdate(UserPassesTestMixin, UpdateView):
     model = Pokemon
     fields = "__all__"
 
     template_name = "pokemon_form.html"
     success_url = "/pokedex/pokemons/"
+
+    def test_func(self):
+        return self.request.user.is_superuser

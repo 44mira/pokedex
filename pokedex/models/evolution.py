@@ -31,6 +31,9 @@ class EvolutionNode(models.Model):
         null=True,
     )
 
+    def __str__(self) -> str:
+        return self.pokemon.name
+
 
 class EvolutionTree(models.Model):
     """
