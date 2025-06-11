@@ -28,7 +28,7 @@ def type_color(typename):
         "fairy": "#D685AD",
     }
 
-    return COLORS[typename]
+    return COLORS.get(typename, '#000')
 
 
 @register.simple_tag
