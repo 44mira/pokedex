@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}<h1>Pokemon List</h1>{% endblock %}
+
+{% block content %}
+<div class="pokemon-list">
+{% for p in pokemon %}
+  <a href={% url "pokemon-detail" p.pk %}>
+    <div class="pokemon-list__item">
+      <img class="pokemon-list__item--image"  src={{p.sprite.front_default}} />
+      <div class="pokemon-list__item--name">{{ p.name|title }}</div>
+    </div>
+  </a>
+{% empty %}
+  <li>
+    No pokemon found.
+  </li>
+{% endfor %}
+</div>
+
+<style>
+a {
+  color: black;
+  text-decoration: inherit;
+}
+
+.pokemon-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-left: 15px;
+  padding-right: 40%;
+}
+
+.pokemon-list__item {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  border: 2px solid black;
+  padding: 1em;
+}
+.pokemon-list__item:hover {
+  background: #cff2ae;
+}
+  .pokemon-list__item--image {
+    border: 2px solid black;
+  }
+  .pokemon-list__item--name {
+    height: fit-content;
+    font-size: 14px;
+    font-weight: bold;
+  }
+</style>
+{% endblock %}
