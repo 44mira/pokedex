@@ -41,4 +41,5 @@ class RegisterUser(FormView):
     form_class = RegisterUserForm
     success_url = "/pokedex/pokemons/"
 
-    template_name = "register_user.html"
+    extra_context = {"message": "Register a user"}
+    template_name = "auth_user.html"
