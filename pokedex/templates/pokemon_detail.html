@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+{% load pokedex %}
+
+{% block content %}
+
+<div class="pokemon-entry">
+  <img class="pokemon-entry__img" src={{ pokemon.sprite.front_default }} height=250 />
+  <div class="pokemon-entry__desc">
+    <section class="entry-name">
+      <div class="entry-name__id">
+        #{{ pokemon.pk }}
+      </div>
+      <div class="entry-name__name">
+        {{pokemon.name|upper}}
+      </div>
+    </section>
+    <section class="entry-types">
+      {% for type in pokemon.types.all %}
+      {% with type.name|type_color as color %}
+        <div class="entry-types__type" style="background: {{ color }};">
+          {{ type.name|upper }}
+        </div>
+      {% endwith %}
+      {% endfor %}
+    </section>
+    <section class="entry-physique">
+      <div>{{ pokemon.height }} decimeters (dm)</div>
+      <div>{{ pokemon.weight }} hectograms (hg)</div>
+    </section>
+    <section class="edit">
+      <a href={% url "pokemon-update" pokemon.pk %}>
+        <div class="edit__button">
+          UPDATE
+        </div>
+      </a>
+      <a href={% url "pokemon-delete" pokemon.pk %}>
+        <div class="edit__button">
+          DELETE
+        </div>
+      </a>
+    </section>
+  </div>
+</div>
+
+<div class="pokemon-entry" style="font-size: 25px;border: 1px solid black;">
+  Sprites:
+</div>
+
+<div class="pokemon-sprites">
+  {% sprite pokemon.sprite.front_default %}
+  {% sprite pokemon.sprite.back_default %}
+  {% sprite pokemon.sprite.front_shiny %}
+  {% sprite pokemon.sprite.back_shiny %}
+  {% sprite pokemon.sprite.front_female %}
+  {% sprite pokemon.sprite.back_female %}
+  {% sprite pokemon.sprite.front_shiny_female %}
+  {% sprite pokemon.sprite.back_shiny_female %}
+</div>
+
+<div class="pokemon-entry" style="font-size: 25px;border: 1px solid black;">
+  Evolution:
+</div>
+
+<div class="pokemon-evolutions">
+  {% evolutions pokemon.evolution_tree %}
+</div>
+
+<div class="pokemon-entry" style="font-size: 25px;border: 1px solid black;">
+  Trainable moves:
+</div>
+
+<div class="pokemon-moves">
+{% for move in pokemon.moves.all %}
+  <div class="pokemon-moves__move">
+    <div class="moves__name">
+      {{ move.name|upper }}
+    </div>
+    <div 
+        class="moves__type entry-types__type"
+        style="background: {{ move.poketype.name|type_color }}">
+      {{ move.poketype|upper }}
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+<style>
+.edit {
+  font-size: 20px;
+  display: flex;
+  gap: 2em;
+}
+  .edit__button {
+    background: #ED392D;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 0.25em 0.5em;
+  }
+  .edit__button:hover {
+    background: #f76a6a;
+  }
+
+.pokemon-entry {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: #ba2d23;
+  border: 5px outset #9E261E;
+
+  font-size: 50px;
+  font-family: sans-serif;
+  color: #f2f7ff;
+}
+
+.pokemon-moves {
+  font-size: 35px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  padding: 20px;
+  background: #ba2d23;
+  border: 5px outset #9E261E;
+}
+
+.pokemon-sprites {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  border: 5px outset #ed392d;
+  gap: 20px;
+}
+
+.pokemon-evolutions {
+  padding: 10px;
+  background: #d7e4f7;
+}
+
+.pokemon-entry__img {
+  background: #f2f7ff;
+  border: 10px outset #ed392d;
+}
+.pokemon-entry__desc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entry-name {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+}
+  .entry-name__id {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 5px 2px;
+    min-width: 2em;
+    background: black;
+    height: 80%;
+    color: #f2f7ff;
+  }
+  .entry-name__name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 5px 0.5em;
+    background: #f2f7ff;
+    color: black;
+    height: 80%;
+    font-style: italic;
+  }
+
+  .entry-types {
+    display: flex;
+    gap: 10px;
+
+    color: #f2f7ff;
+    font-weight: bold;
+    font-size: 32px;
+  }
+    .entry-types__type {
+      padding: 0.5em;
+      border-radius: 10px;
+      border: 1px solid black;
+    }
+
+  .entry-physique {
+    width: 100%;
+    color: white;
+    font-size: 24px;
+  }
+
+  .pokemon-sprite__img {
+    border: 2px solid black;
+  }
+
+  .pokemon-moves__move {
+    display: flex;
+    border: 2px solid black;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0px;
+    
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #f2f7ff;
+  }
+  .moves__name {
+    font-size: 18px;
+  }
+  .moves__type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+  }
+
+  a {
+    color: black;
+    text-decoration: inherit;
+  }
+
+  .evolution-tree {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .evolution-layer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .evolution-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    padding: 10px;
+    font-family: sans-serif;
+    border: 2px solid black;
+  }
+    .evolution-node:hover {
+      background: #cff2ae;
+    }
+</style>
+{% endblock %}
